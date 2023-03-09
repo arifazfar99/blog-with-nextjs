@@ -7,6 +7,30 @@
   align-items: center;
 }
 
+.bgWrap {
+  position: fixed;
+  height: 80vh;
+  width: 80vw;
+  overflow: hidden;
+  z-index: -1;
+}
+
+.bgText {
+  margin: 0;
+  font-size: 2rem;
+  line-height: 3rem;
+  text-align: center;
+  text-shadow: 1px 1px 1px #3c5c5e;
+}
+
+.bgDesc {
+  margin: 0;
+  font-size: 1.5rem;
+  line-height: 3rem;
+  text-align: center;
+  text-shadow: 1px 1px 1px #3c5c5e;
+}
+
 .title a {
   color: #0070f3;
   text-decoration: none;
@@ -33,7 +57,6 @@
   text-align: center;
 }
 
-
 .description {
   line-height: 1.5;
   font-size: 1.5rem;
@@ -41,11 +64,10 @@
 
 .grid {
   display: flex;
-  align-items: center;
-  justify-content: center;
   flex-wrap: wrap;
-
-  max-width: 800px;
+  grid-template-columns: repeat(4, minmax(25%, auto));
+  width: var(--max-width);
+  max-width: 80%;
   margin-top: 3rem;
 }
 
@@ -59,6 +81,11 @@
   border: 1px solid #eaeaea;
   border-radius: 10px;
   transition: color 0.15s ease, border-color 0.15s ease;
+}
+
+.card span {
+  display: inline-block;
+  transition: transform 200ms;
 }
 
 .card:hover,

@@ -1,57 +1,83 @@
 import Head from "next/head";
-import Layout, { siteTitle } from "../components/layout";
-import utilStyles from "../styles/utils.module.css";
-import { getSortedPostsData } from "../lib/posts";
+import styles from "../styles/Home.module.css";
 import Link from "next/link";
-import Date from "../components/date";
 import { GetStaticProps } from "next";
+import Image from "next/image";
+import malaysia from "../public/images/malaysia-map.png";
 
-export const getStaticProps: GetStaticProps = async () => {
-  const allPostsData = getSortedPostsData();
-  return {
-    props: {
-      allPostsData,
-    },
-  };
-};
-
-export default function Home({
-  allPostsData,
-}: {
-  allPostsData: {
-    date: string;
-    title: string;
-    id: string;
-  }[];
-}) {
+export default function Home() {
   return (
-    <Layout home>
-      <Head>
-        <title>{siteTitle}</title>
-      </Head>
-      <section className={utilStyles.headingMd}>
-        <p>
-          Hello! I'm <b>Arif</b>. I'm a front-end developer.
+    <div className={styles.container}>
+      <div className={styles.bgWrap}>
+        <Image
+          alt="Malaysia"
+          src={malaysia}
+          placeholder="blur"
+          quality={100}
+          fill
+          style={{
+            objectFit: "cover",
+          }}
+        />
+      </div>
+
+      <div>
+        <p className={styles.bgText}>
+          Data: The backbone of effective governance
         </p>
-        <p>
-          (This is a sample website - you’ll be building a site like this on{" "}
-          <a href="https://nextjs.org/learn">our Next.js tutorial</a>.)
+        <p className={styles.bgDesc}>
+          OpenDOSM is a platform that catalogs, visualises, and analyses DOSM's
+          wealth of data. Everything on this site is open-sourced and freely
+          available for the nation's benefit.
         </p>
-      </section>
-      <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
-        <h2 className={utilStyles.headingLg}>Blog</h2>
-        <ul className={utilStyles.list}>
-          {allPostsData.map(({ id, date, title }) => (
-            <li className={utilStyles.listItem} key={id}>
-              <Link href={`/posts/${id}`}>{title}</Link>
-              <br />
-              <small className={utilStyles.lightText}>
-                <Date dateString={date} />
-              </small>
-            </li>
-          ))}
-        </ul>
-      </section>
-    </Layout>
+      </div>
+      <div className={styles.grid}>
+        <Link href="/economy" className={styles.card} rel="noopener noreferrer">
+          <h2>
+            Economy <span>-&gt;</span>
+          </h2>
+          <p>Description</p>
+        </Link>
+
+        <Link
+          href="/financial"
+          className={styles.card}
+          rel="noopener noreferrer"
+        >
+          <h2>
+            Financial Sector <span>-&gt;</span>
+          </h2>
+          <p>Description</p>
+        </Link>
+
+        <Link href="/social" className={styles.card} rel="noopener noreferrer">
+          <h2>
+            Social <span>-&gt;</span>
+          </h2>
+          <p>Description</p>
+        </Link>
+
+        <Link
+          href="/national"
+          className={styles.card}
+          rel="noopener noreferrer"
+        >
+          <h2>
+            National Accounts <span>-&gt;</span>
+          </h2>
+          <p>Description</p>
+        </Link>
+        <Link
+          href="/demography"
+          className={styles.card}
+          rel="noopener noreferrer"
+        >
+          <h2>
+            Demography <span>-&gt;</span>
+          </h2>
+          <p>Description</p>
+        </Link>
+      </div>
+    </div>
   );
 }
